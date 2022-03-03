@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<h1>detail entry page</h1>
+    <br>
+    <h1>Form</h1>
+    {% if count_of_entries == 1 %}
+    <div id="single_form" class="container">
+        <form action="" method="POST">
+        {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="fieldWrapper">
+                {{ form.record_date.errors }}
+                <label for="{{ form.record_date.id_for_label }}"> Recorded Date: </label>
+                <input value="{{ date }}" name="date" id="{{ form.recorded_date.id_for_label }}" type="date" class="form-control" placeholder="Date" required>
+                {{ date }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.recorded_time.errors }}
+                <label for="{{ form.recorded_time.id_for_label }}">Time Worked: </label>
+                <input value="{{ form.recorded_time.value }}" name="recorded_time" id="{{ form.recorded_time.id_for_label }}" type="number" class="form-control" min="0">
+            </div>
+            <div class="fieldWrapper">
+                {{ form.comments.errors }}
+                <label for="{{ form.comments.id_for_label }}">Comments: </label>
+                <textarea name="comments" id="{{ form.comments.id_for_label }}" rows="1" class="form-control">{{ form.comments.value }}</textarea>
+            </div>
+            <div class="fieldWrapper">
+                {{ form.overtime.errors }}
+                <label for="{{ form.overtime.id_for_label }}">Pay Rate: </label>
+{#                <input name="overtime" id="overtime" type="number" class="form-control" min="0">#}
+                {{ form.overtime }}
+            </div>
+        <button class="btn btn-info mt-3">Submit</button>
+        </form>
+    </div>
+
+    {% elif count_of_entries > 1%}
+    <div id="multi_entry_table_display" class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time Entry (minutes)</th>
+                    <th scope="col">Comments</th>
+                    <th scope="col">Pay Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entry in multiple_time_entries %}
+            <tr>
+                <td>{{ entry.record_date }}</td>
+                <td>{{ entry.recorded_time }}</td>
+                <td>{{ entry.comments }}</td>
+                <td>{{ entry.overtime }}</td>
+                <td><a href="{% url 'timesheet:time_entry_detail' entry.id %}">Modify?</a></td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+{% endblock content %}
+
+

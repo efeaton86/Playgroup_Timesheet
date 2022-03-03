@@ -1,0 +1,178 @@
+TODO:
+
+Form validation on backend:
+will validate form and if any errors occur will send a dictionary back to server side
+parse dictionary and load data to vue js store for rendering
+
+
+
+
+
+
+
+
+
+
+
+-Authentication Logic
+    -run authentication based on email and not username
+
+-Authentication views
+    -enable
+        -login/logout/passwordchange/passwordreset/
+    -style using bootstrap
+        https://www.youtube.com/watch?v=6-XXvUENY_8
+    -Login view using email
+    -Sign Up Form
+        -style
+
+
+Custom user model:
+    - DONE - Settings/config file point to custom model
+    - DONE - Register model to view in admin site
+    - DONE - Keep default fields for now, extend later
+
+Inventory App:
+    -Create Models
+        -see power point
+
+    -Render a form manually
+    https://docs.djangoproject.com/en/dev/topics/forms/#customizing-the-form-template
+
+
+Timesheet App:
+
+HIGH LEVEL APP OVERVIEW
+
+    -Vue apps
+    Layout and general functionality:
+    There are 3 main components
+        1. Calendar on the left 3/4 part of window
+            1. Allows user to cycle through months
+            2. Will display days that have an entry
+                -DONE - api call to backend to retrieve entry objects
+                -DONE - store as state in VUEX
+                -DONE - hardcoded calendar indicator on all days
+                -DONE - indicator should only appear on days with an entry
+
+            3. Clicking on a day with an entry will take me to my django
+                time_entry_detail view that allows user to edit a single day
+
+        2. Dashboards underneath calendar and form
+            1. will render this out directly from django
+                -total overtime hours
+                -total base hours
+                -total days worked
+
+        3. Form for user to capture time data
+            -will have global state in vuex store that tracks the user selected day
+                mvp1 - Done
+                -once a day is selected, form line appears with date prepopulated allowing
+                    user to capture their time entry
+                mvp2
+                -will allow user to select multiple days. only:
+                    - DONE - one time entry allowed (ie 2 hours for every day)
+                    - DONE - Clear Vue store form state after submital
+                    - what is the proper way to sync up store state db.
+                        *not really sure but will try this
+                        DONE - step 1. submit form to db
+                        DONE - step 2. write to db
+                        step 3. return response to vue
+                        step 4. based on response alert user to either success or failure
+                            step 4a. if failure load any error messages for user
+                            step 4b. rerun step 1
+                        step 5. successful call write to vuex store
+                        step 6. clear form state in vuex
+                        -do i make api call to fetch updated data, or just add new entry to vue store
+                    - need to allow user to exclude weekends for time capture
+                mvp3
+                -will allow user to select a day with an entry already capture
+                    and route them to my view thats created to modfify a day
+
+            1. Button to allow adding an extra form row for multi day entry
+            2. Button to remove a row if an extra row is not needed
+
+        4. VUEX store to manage state
+            Write operations:
+                1. Create time entry
+                2. Edit time entry (is this needed - outsourcing to already created view)
+            Read Operations:
+                1. Get time entry (query database for user entries that month at application load)
+
+
+ADMIN DASHBOARD APP:
+
+1. Settings View
+    - Select pay range ex - Aug 26 starts month september 25th ends month
+2. Main View
+    a. Pay period selection
+    b. Displays list of employees and if their time is approved - card with approved and hours for period
+        - clicking the employees card brings up a table with all of the employees entries
+        - each entry has click box to approve time
+        - once time is approved, it becomes locked, and user unable to edit
+
+
+
+4. Generate PDF report for the approved pay cycle, sending to person doing payroll
+    - give admin some options for report generation
+        - pay cycle
+        - employees to include
+        - who to send it to
+
+TODO
+- build cards
+    - picture
+    - employee name
+    - hours for pay period
+    - select button
+- build carousel
+- selecting carousel card changes from bar chart to table of entries for the user
+- Table
+    - has radio button to flag an entry as approved
+    - has submit button to confirm approval and lock days
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Articles
+1. How to create calendar in vue
+https://codesandbox.io/s/monthly-calendar-vue-wdv9y?file=/src/App.vue
+2.
+https://docs.djangoproject.com/en/dev/topics/forms/#customizing-the-form-template
+3. Vuex store setup
+https://www.codingame.com/playgrounds/6661/vuex-tutorial
+4. Passing data from django template to vue
+https://stackoverflow.com/questions/60460443/pass-django-data-into-vue-component
+5. Chart.JS demo
+https://blog.logrocket.com/creating-chart-components-in-vue-with-chart-js/
+6. Carousel
+https://www.youtube.com/watch?v=zNxMigzqgL4
+https://dev.to/luvejo/how-to-build-a-carousel-from-scratch-using-vue-js-4ki0
+
+
+
+
+
+
+borb pdf for generating pdf report
+
+
+

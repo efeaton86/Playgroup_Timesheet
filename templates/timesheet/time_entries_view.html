@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <script defer src="{% static 'js/timesheet/time_entries_view.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/timesheet/time_entries_view.css' %}">
+{% endblock styles%}
+
+<h1>landing page</h1>
+
+
+
+{% block content %}
+<h1>User time entry view</h1>
+<section>
+
+</section>
+<div class="container">
+    <form method="GET" action="">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-4">
+                <select name="year" class="form-select form-select-sm" aria-label=".form-select-lg example">
+                  <option selected>Year</option>
+                    {% for item in year_filter_options %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-4">
+                <select name="quarter" class="form-select form-select-sm" aria-label=".form-select-lg example">
+                  <option selected>Quarter</option>
+                  <option value="1">Q1</option>
+                  <option value="2">Q2</option>
+                  <option value="3">Q3</option>
+                  <option value="3">Q4</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <select name="month" class="form-select form-select-sm" aria-label=".form-select-lg example">
+                  <option selected>Month</option>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<hr>
+{##}
+{#    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Jan</button>#}
+{#      </li>#}
+{#        add "active class to show a month as selected#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Feb</button>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Mar</button>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="profile" aria-selected="true">Apr</button>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">May</button>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">June</button>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">July</button>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Aug</button>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button href="{% url 'timesheet:time_entries_view' 2021 9 %}" class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Sept</button>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#          <a href="{% url 'timesheet:time_entries_view' 2021 9 %}">#}
+{#              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Sept</button>#}
+{#          </a>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Oct</button>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Nov</button>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Dec</button>#}
+{#      </li>#}
+{#    </ul>#}
+{#<div class="tab-content" id="myTabContent">#}
+{#  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>#}
+{#  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>#}
+{#  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>#}
+{#</div>#}
+
+{#    </ul>#}
+
+    User ID: {{ user_obj }}
+
+<h3>User Entries</h3>
+    {% for entry in user_entries %}
+        <li>
+        <a href="{% url 'timesheet:time_entry_detail' entry.pk %}">{{ entry.record_date }}</a>
+        </li>
+    {% endfor %}
+
+
+{% endblock content %}

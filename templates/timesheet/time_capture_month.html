@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load render_bundle from webpack_loader %}
+{% load static %}
+
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/timesheet/time_capture_month.css' %}">
+{#    <script defer src={% static "js/timesheet/time_capture_month.js" %}></script>#}
+{% endblock styles %}
+
+{% block scripts %}
+    <script>const jscontext={token: 'hello this is a test'}</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+{% endblock scripts %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 pb-5">
+            <div id="app">
+                <timesheetVueCalendar test="passing through?"></timesheetVueCalendar>
+                {% render_bundle 'chunk-vendors' %}
+                {% render_bundle 'timesheetVueCalendar' %}
+            </div>
+        </div>
+    </div>
+    <div class="row pt-5 d-flex justify-content-around">
+        <div class="col-4 d-flex justify-content-center">
+            <div class="card border-secondary mb-3" style="max-width: 18rem;">
+              <div class="card-header">Total Days Worked</div>
+              <div class="card-body text-secondary">
+                <h5 class="card-title">Secondary card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-4 d-flex justify-content-center">
+            <div class="card border-secondary mb-3" style="max-width: 18rem;">
+              <div class="card-header">Total Hours Worked</div>
+              <div class="card-body text-secondary">
+                <h5 class="card-title">Secondary card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-4 d-flex justify-content-center">
+            <div class="card border-secondary mb-3" style="max-width: 18rem;">
+              <div class="card-header">Overtime Hours Worked</div>
+              <div class="card-body text-secondary">
+                <h5 class="card-title">Secondary card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{#<div class="container d-flex justify-content-end align-items-center">#}
+{#    <h6 class="d-inline-block text-muted">Add or Remove Row</h6>#}
+{#    <button id="timeEntry_addRow" type="button" class="btn btn-default d-inline-block ms-2 mb-2">#}
+{#        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-dotted" viewBox="0 0 16 16">#}
+{#            <path d="M2.5 0c-.166 0-.33.016-.487.048l.194.98A1.51 1.51 0 0 1 2.5 1h.458V0H2.5zm2.292 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zm1.833 0h-.916v1h.916V0zm1.834 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zM13.5 0h-.458v1h.458c.1 0 .199.01.293.029l.194-.981A2.51 2.51 0 0 0 13.5 0zm2.079 1.11a2.511 2.511 0 0 0-.69-.689l-.556.831c.164.11.305.251.415.415l.83-.556zM1.11.421a2.511 2.511 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415L1.11.422zM16 2.5c0-.166-.016-.33-.048-.487l-.98.194c.018.094.028.192.028.293v.458h1V2.5zM.048 2.013A2.51 2.51 0 0 0 0 2.5v.458h1V2.5c0-.1.01-.199.029-.293l-.981-.194zM0 3.875v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 5.708v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 7.542v.916h1v-.916H0zm15 .916h1v-.916h-1v.916zM0 9.375v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .916v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .917v.458c0 .166.016.33.048.487l.98-.194A1.51 1.51 0 0 1 1 13.5v-.458H0zm16 .458v-.458h-1v.458c0 .1-.01.199-.029.293l.981.194c.032-.158.048-.32.048-.487zM.421 14.89c.183.272.417.506.69.689l.556-.831a1.51 1.51 0 0 1-.415-.415l-.83.556zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373c.158.032.32.048.487.048h.458v-1H2.5c-.1 0-.199-.01-.293-.029l-.194.981zM13.5 16c.166 0 .33-.016.487-.048l-.194-.98A1.51 1.51 0 0 1 13.5 15h-.458v1h.458zm-9.625 0h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zm1.834-1v1h.916v-1h-.916zm1.833 1h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>#}
+{#        </svg>#}
+{#    </button>#}
+{#    <button id="timeEntry_removeRow" type="button" class="btn btn-default d-inline-block mb-2">#}
+{#        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-square-dotted" viewBox="0 0 16 16">#}
+{#            <path d="M2.5 0c-.166 0-.33.016-.487.048l.194.98A1.51 1.51 0 0 1 2.5 1h.458V0H2.5zm2.292 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zm1.833 0h-.916v1h.916V0zm1.834 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zM13.5 0h-.458v1h.458c.1 0 .199.01.293.029l.194-.981A2.51 2.51 0 0 0 13.5 0zm2.079 1.11a2.511 2.511 0 0 0-.69-.689l-.556.831c.164.11.305.251.415.415l.83-.556zM1.11.421a2.511 2.511 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415L1.11.422zM16 2.5c0-.166-.016-.33-.048-.487l-.98.194c.018.094.028.192.028.293v.458h1V2.5zM.048 2.013A2.51 2.51 0 0 0 0 2.5v.458h1V2.5c0-.1.01-.199.029-.293l-.981-.194zM0 3.875v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 5.708v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 7.542v.916h1v-.916H0zm15 .916h1v-.916h-1v.916zM0 9.375v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .916v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .917v.458c0 .166.016.33.048.487l.98-.194A1.51 1.51 0 0 1 1 13.5v-.458H0zm16 .458v-.458h-1v.458c0 .1-.01.199-.029.293l.981.194c.032-.158.048-.32.048-.487zM.421 14.89c.183.272.417.506.69.689l.556-.831a1.51 1.51 0 0 1-.415-.415l-.83.556zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373c.158.032.32.048.487.048h.458v-1H2.5c-.1 0-.199-.01-.293-.029l-.194.981zM13.5 16c.166 0 .33-.016.487-.048l-.194-.98A1.51 1.51 0 0 1 13.5 15h-.458v1h.458zm-9.625 0h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zm1.834 0h.916v-1h-.916v1zm1.833 0h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z"/>#}
+{#        </svg>#}
+{#    </button>#}
+{#</div>#}
+{#<div class="container">#}
+{#    {% if not form %}#}
+{#    <form id="timeEntryForm" action="" method="POST">#}
+{#        {% csrf_token %}#}
+{#        <div class="row form_row">#}
+{#            <input type="hidden" id="formIDX" name="formIDX" value="0">#}
+{#            <div class="col-3">#}
+{#                <label for="date">Date</label>#}
+{#                <input name="date" id="date" type="date" class="form-control" placeholder="Date" required>#}
+{#            </div>#}
+{#            <div class="col-2">#}
+{#                <label for="hours">Hours</label>#}
+{#                <input name="hours" id="hours" type="number" class="form-control" min="0">#}
+{#            </div>#}
+{#            <div class="col-2">#}
+{#                <label for="minutes">Minutes</label>#}
+{#                <input name="minutes" id="minutes" type="number" class="form-control" min="0">#}
+{#            </div>#}
+{#            <div class="col-3">#}
+{#                <label for="comments">Comments</label>#}
+{#                <textarea name="comments" id="comments" rows="1" class="form-control"></textarea>#}
+{#            </div>#}
+{#            <div class="col-2 justify-content-center me-0">#}
+{#                <label for="overtime"></label>#}
+{#                <select name="overtime" class="form-select" aria-label="Default select example" required>#}
+{#                  <option value="False">Base</option>#}
+{#                  <option value="True">Overtime</option>#}
+{#                  <option value="base">Base</option>#}
+{#                  <option value="overtime">Overtime</option>#}
+{#                </select>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endif %}#}
+{#    {% if form %}#}
+{#        {{ form_with_errors }}#}
+{#    {% endif %}#}
+{#        <button class="btn btn-info mt-3">Submit</button>#}
+{#    </form>#}
+    <hr>
+{#<div id="app-entryForm">#}
+{#    {% render_bundle 'chunk-vendors' %}#}
+{#    {% render_bundle 'timesheetEntryForm' %}#}
+{#</div>#}
+
+    <hr>
+
+
+
+</div>
+
+
+
+{% endblock %}
+
+<style>
+
+</style>
