@@ -3,7 +3,6 @@ import json
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from django.template.loader import render_to_string
 from django.urls import reverse
 from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib.auth.decorators import login_required
