@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import json
 
 from django.shortcuts import render
@@ -170,7 +170,7 @@ def form_entries(request):
                 .filter(
                     record_date__month=month,
                     record_date__year=year
-            )
+                )
 
             time_entries_json = json.dumps(
                 [entry for entry in time_entries.values()],
